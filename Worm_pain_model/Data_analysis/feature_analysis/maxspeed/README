@@ -12,6 +12,8 @@ maxspeed_*.mat
 Structure of maxspeed_*.mat
 maxvalue : maximum backward speed 
 time2max : time to maximum backward speed 
+avgmaxspeed: average maximum backward speed after binning
+I_avgmaxspeed: Laser power of the average maximum backward speeds
 
 
 

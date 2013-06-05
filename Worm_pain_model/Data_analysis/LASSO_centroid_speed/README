@@ -1,0 +1,15 @@
+Perform lasso analysis
+
+=================================
+LASSO.R
+
+Input:
+Speed_*.mat
+
+Output:
+R_result.mat
+
+Structure of Output:
+r2cv: Cross-valided R2
+LASSOresult: coeff. of regression result
+nzero: number of non-zeros

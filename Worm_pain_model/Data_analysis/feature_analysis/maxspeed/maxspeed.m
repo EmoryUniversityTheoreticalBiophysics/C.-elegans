@@ -37,11 +37,9 @@ for i = 1:size(speed,2)
     
     %Put NaN into the results if the worm is keep moving forward
     if isempty(temp)
-        rtime(i) = NaN;
         maxvalue(i) = NaN;
         time2max(i) = NaN;
     else
-        rtime(i) = temp(1);
         [maxvalue(i) time2max(i)] = max(-speed(starttime:endtime,i));
     end
 end
@@ -57,14 +55,14 @@ tmaxvalue(find(isnan(tmaxvalue))) = [];
 
 for i = 1:binl
     temp = find(tI<(i*diff) & tI>((i-1)*diff));
-    avg1(i) = mean(tmaxvalue(temp));
+    avgmaxspeed(i) = mean(tmaxvalue(temp));
     SD1(i) = sqrt(var(tmaxvalue(temp)));
-    x1(i) = (i+i-1)*diff/2;
+    I_avgmaxspeed(i) = (i+i-1)*diff/2;
 end
 
 
 figure(1)
-errorbar(x1,avg1,SD1/2,'xr')
+errorbar(I_avgmaxspeed,avgmaxspeed,SD1/2,'xr')
 
 ylabel('Max speed')
 xlabel('Laser power')
@@ -75,5 +73,5 @@ xlabel('Laser power')
 %%%%saving data
 cd(orgpath);
 savefilename = ['max' speedvarname];
-save(savefilename,'maxvalue','time2max')
+save(savefilename,'maxvalue','time2max','avgmaxspeed','I_avgmaxspeed')
 

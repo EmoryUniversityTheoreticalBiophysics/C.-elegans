@@ -1,0 +1,16 @@
+Apply nonlinear transform to laser power I according to max speed
+
+======================================================================
+nonlinear.m
+
+Function: 
+Apply nonlinear transform to laser power I
+
+Output:
+speed_*.mat
+
+Structure of output:
+I_*: Laser power
+nI_*: Transformed laser power
+speed_*: centroid speed
+nfspeed_*: normalized centroid speed
