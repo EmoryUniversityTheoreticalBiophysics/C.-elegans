@@ -1,0 +1,15 @@
+Calcaulte the response time by finding the time when speed drops below zero after the laser was ignited
+
+==================================================================
+response.m
+
+Function:
+Calcaulte the response time 
+
+Output:
+responsetime_*.m
+
+Structure of output:
+rtime: response time
+
+==================================================================

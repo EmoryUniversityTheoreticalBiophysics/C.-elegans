@@ -1,0 +1,18 @@
+Find the maximum backward speed of the worm
+
+===================================================
+maxspeed.m
+
+function:
+calculate maximum speed
+
+output:
+maxspeed_*.mat
+
+Structure of maxspeed_*.mat
+maxvalue : maximum backward speed 
+time2max : time to maximum backward speed 
+
+
+
+

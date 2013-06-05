@@ -1,0 +1,29 @@
+Calculate acceleration and do LASSO analysis on the data
+
+==========================================================
+acceleration.m
+
+function:
+calculate acceleration and present it
+
+output:
+acc_*.mat
+
+Structure of acc_*.mat:
+acc_*: acceleration
+I_*: Laser power
+
+==========================================================
+LASSO_acc.R
+
+function: 
+Perform LASSO Analysis on acceleration data
+
+Output:
+R_results.mat
+
+Structure of R_results.mat:
+r2cv: Cross-validated R2 value 
+LASSOresult: Coefficient of the model
+nzero: Number of non-zeros
+==========================================================

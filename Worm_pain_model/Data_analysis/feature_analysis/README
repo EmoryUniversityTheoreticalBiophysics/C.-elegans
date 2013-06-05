@@ -1,0 +1,38 @@
+Analysis of different large scale features
+
+===========================================
+Omega_turn_angle  
+
+
+===========================================
+Terminal_speed    
+
+Function:
+Calculate the terminal speed
+===========================================
+Maxspeed          
+
+Function:
+Calculate the maximum speed
+===========================================
+Accceleration     
+
+Function:
+Calcualte the acceleration
+===========================================
+Features_angle    
+
+
+===========================================
+Response_time     
+
+Function:
+Calcaulte the response time by finding the time when speed drops below zero after the laser was ignited
+
+===========================================
+Combined     
+
+Function:
+Combine all feaures and perform LASSO analysis
+
+===========================================
