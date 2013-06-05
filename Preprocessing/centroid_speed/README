@@ -1,0 +1,27 @@
+Calculate the centroid speed and save them to speed_*.mat
+
+==========================================================
+centroid_speed.m
+
+function:
+calculate the centroid speed and apply gaussian filter on it
+
+output:
+speed_*.mat
+
+Structure of speed_*.mat:
+I_*(i) : Laser power of worm index i
+speed_*(i) : Centroid speed 
+nfspeed_*(i) : Normalized centroid speed
+
+Dependency:
+filter_function.m
+
+===========================================================
+filter_function.m
+
+function:
+apply moving gaussian filter on the data
+
+
+===========================================================
