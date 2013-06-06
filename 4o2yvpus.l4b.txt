@@ -1,0 +1,23 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   Worm_pain_model/Data_analysis/Turning_analysis/angle_all.mat
+#	new file:   Worm_pain_model/Data_analysis/Turning_analysis/angle_change.m
+#	new file:   Worm_pain_model/Data_analysis/Turning_analysis/angle_diff.mat
+#	new file:   Worm_pain_model/Data_analysis/Turning_analysis/anglechangeafterturn.m
+#	new file:   Worm_pain_model/Data_analysis/Turning_analysis/output.mat
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/README
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/input_ctrl.mat
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/input_generator.m
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/interactiveplot.fig
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/interactiveplot.m
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/lasso_temp.mat
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/output - Copy.mat
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/output.mat
+#	new file:   Worm_pain_model/Preprocessing/Turning_detection/slowmotionflag.mat
+#
+
