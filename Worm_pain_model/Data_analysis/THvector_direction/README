@@ -1,0 +1,31 @@
+Calculate the change in direction during the response
+=====================================================
+Angle_time.m
+
+Function:
+Calculate the change in head to tail vector with respect to the average vector of first 60 frames
+
+Output:
+angle_*.mat
+
+Structure of output:
+angle_all: Change in direction (time x worm index). Range = +180 to -180 degrees. Clockwise = -ve. Output = NaN if vector length = 0.
+
+Dependency:
+Angle_change.m
+
+======================================================
+Angle_change.m
+
+Function:
+calculate the change in direction of vector2 wiht respect to vector 1 on a 2D plane
+
+Input:
+Angle_change(initvec,finalvec)
+initvec : (x,y)
+finalvec : (x,y)
+The size of initvec and finalvec must be (1*2)
+
+Output:
+change in direction in degrees. Range = +180 to -180 degrees. Clockwise = -ve. Output = NaN if vector length = 0.
+======================================================
