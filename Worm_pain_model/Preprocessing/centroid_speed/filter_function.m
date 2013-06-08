@@ -1,10 +1,16 @@
 
 
 function [ speed_f2 ] = filter_function(speed,windowSize)
-%Apply moving gaussian filter on the input data
-%Make sure the start and the end is correct
-%speed : speed vs time data (or any other data)
-%windowSize : full size of the window
+% function [ speed_f2 ] = filter_function(speed,windowSize)
+% 
+% This function apply a moving gaussian filter on the speed vs time data.
+% 
+% Input:
+%   speed(i) -- centroid velocity at time i.
+%   windowSize -- size of the window
+% Output:
+%   speed_f2(i) -- filtered centroid velocity at time i.
+
 
         if size(speed,1)<size(speed,2)
             speed = speed';
@@ -18,7 +24,6 @@ function [ speed_f2 ] = filter_function(speed,windowSize)
         gnum = gnum./sum(gnum);
         
         %%filtering algorithm 
-        %speed
         for i = 1:length(speed)
             if i-(windowSize/2)<1
                 speed_f2(i) = sum(speed(1:i+(windowSize/2)).*gnum(end-i-(windowSize/2)+1:end)')/sum(gnum(end-i-(windowSize/2)+1:end));
