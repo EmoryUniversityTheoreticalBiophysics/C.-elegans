@@ -3,15 +3,19 @@ function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % 
 % The function calaculates the worm centroid speed from 
 % centroid position data. HOW IS THIS CALCULATED?
+
 % Input:
 %  path_to_file -- path to the file with the centroid 
 %	position data
-%  fname -- filename of the centroid position data file,
+%  datafname -- filename of the centroid position data file,
 %	extension '.mat' is assumed
+%  framerate -- framerate of the data
+%  filterlength -- length of the window of the gaussian filter
+% 
 % Input file structure:
-%	......
-%  We also need a additional input file 'fname'_notes.mat.
-%	which is structured as:.....
+% data{k} -- cell array of trial k containing:
+%  centroid (i,j) -- Centroid position of the worm. i represents time and j represents x (j = 1) and y (j = 2) coordinates. 
+%  I -- laser power of worm i
 % Output:
 %  no output variables
 % Output File:
@@ -23,30 +27,16 @@ function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
 
 
-%%%%%%%%%%%%%%%%%%
-%%Settings
-
-%%Settings end
-%%%%%%%%%%%%%%%%%%
-
-%
-
-
 %load data 
 load([path_to_file '\' datafname '.mat'])
 
 %%%calculate centroid speed
 for i = 1:length(data)
     
-    %extract the centroid
-    for j = 1:length(data{1}.wormskelx)
-            centroid{i}(j,:) = data{i}.centroid.wormcentroid(j).c2.Centroid;
-    end
-    
     %Calculate the speed by calculating the difference of centroid
-    diff_t = zeros(length(data{i}.centroid.wormcentroid)-1,2);
-    for k = 1:length(data{i}.centroid.wormcentroid)-1
-        diff_t(k,:) = centroid{i}(k+1,:) - centroid{i}(k,:); 
+    diff_t = zeros(size(data{i}.centroid,1)-1,2);
+    for k = 1:size(data{i}.centroid,1)-1
+        diff_t(k,:) = data{i}.centroid(k+1,:) - data{i}.centroid(k,:); 
     end
     speed(:,i) = sqrt(diff_t(:,1).^2 + diff_t(:,2).^2)./framerate;
     
@@ -58,7 +48,7 @@ for i = 1:length(data)
     %y direction of the tail to head vector   
     thvector(:,2) = data{i}.wormskely(:,1) - data{i}.wormskely(:,end);
          
-         for j = 1:length(data{i}.centroid.wormcentroid)-1
+         for j = 1:size(data{i}.centroid,1)-1
            %Calculate the dot product of velocity and thvector
             dirvec(j) = dot(diff_t(j,:),thvector(j,:));
             
@@ -99,6 +89,6 @@ try
 end
 
 %saving data
-save([filepathname ''],'fspeed','nfspeed','I')
+save([filepathname '\' datafname(1:end-5) '_speed'],'fspeed','nfspeed','I')
 
 end

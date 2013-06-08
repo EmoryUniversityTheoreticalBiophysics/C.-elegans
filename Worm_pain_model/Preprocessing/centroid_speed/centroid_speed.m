@@ -3,33 +3,33 @@ function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % 
 % The function calaculates the worm centroid speed from 
 % centroid position data. HOW IS THIS CALCULATED?
+
 % Input:
 %  path_to_file -- path to the file with the centroid 
 %	position data
-%  fname -- filename of the centroid position data file,
+%  datafname -- filename of the centroid position data file,
 %	extension '.mat' is assumed
+%  framerate -- framerate of the data
+%  filterlength -- length of the window of the gaussian filter
+% 
 % Input file structure:
-%	......
-%  We also need a additional input file 'fname'_notes.mat.
-%	which is structured as:.....
+%   data{k} -- cell array of trial k containing:
+%       centroid (i,j) -- Centroid position of the worm. i represents time and j represents x (j = 1) and y (j = 2) coordinates. 
+%   I(i) -- laser power of worm i
+% 
 % Output:
 %  no output variables
+% 
 % Output File:
 %  data will be stored in a file named 'datafname'_CVel.mat in 
 %	the directory specified by 'path_to_file'
+% 
 % Output file structure:
-% 	......
-%
+% 	fspeed (i,j) -- filtered centroid velocity at time i of trial j.
+%   nfspeed (i,j) -- filtered and normalized centroid veloctiy at time i of trial j.
+%   I(i) -- laser power of worm i.
+% 
 % (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
-
-
-%%%%%%%%%%%%%%%%%%
-%%Settings
-
-%%Settings end
-%%%%%%%%%%%%%%%%%%
-
-%
 
 
 %load data 
@@ -94,6 +94,6 @@ try
 end
 
 %saving data
-save([filepathname '\' datafname(1:end-5) '_speed'],'fspeed','nfspeed','I')
+save([filepathname '\' datafname(1:end-5) '_CVel'],'fspeed','nfspeed','I')
 
 end
