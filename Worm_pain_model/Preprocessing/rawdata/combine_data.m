@@ -100,4 +100,4 @@ end
 %%%Saving the data into one file
 cd(path_to_file)
 savefilename = [picfname '_data'];
-save(savefilename,'data','filename','I','xpos','ypos','filename','side')
+save(savefilename,'data','filename','I','xpos','ypos','side')

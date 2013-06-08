@@ -1,7 +1,7 @@
 function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % 
-% This function calaculates the worm centroid speed from 
+% This function calaculates the worm centroid speed in pixels/s from 
 % centroid position data. The centroid speed of time t is calculated by calculating
 % the difference between time t+1 and time t, then multiply it by
 % framerate. Finally the speed is smoothed by a moving gaussian filter.
@@ -54,13 +54,15 @@ for i = 1:length(data)
     thvector(:,1) = data{i}.wormskelx(:,1) - data{i}.wormskelx(:,end);
     %y direction of the tail to head vector   
     thvector(:,2) = data{i}.wormskely(:,1) - data{i}.wormskely(:,end);
+    
+     allthvector{i} = thvector;
          
          for j = 1:size(data{i}.centroid,1)-1
            %Calculate the dot product of velocity and thvector
-            dirvec(j) = dot(diff_t(j,:),thvector(j,:));
+            dirvec(j,i) = dot(diff_t(j,:),thvector(j,:));
             
             %set the speed to negative if the dot product is negative
-           if dirvec(j) < 0
+           if dirvec(j,i) < 0
                speed(j,i) = -speed(j,i);
            end
          end

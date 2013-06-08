@@ -1,16 +1,18 @@
 function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
-% function []=centroid_speed(path_to_file, fname
+% function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % 
-% The function calaculates the worm centroid speed from 
-% centroid position data. The centroid speed is calculated by calculating
-% the difference between 
+% This function calaculates the worm centroid speed in pixels/s from 
+% centroid position data. The centroid speed of time t is calculated by calculating
+% the difference between time t+1 and time t, then multiply it by
+% framerate. Finally the speed is smoothed by a moving gaussian filter.
+% 
 % Input:
 %  path_to_file -- path to the file with the centroid 
-%	position data
+% 	position data
 %  datafname -- filename of the centroid position data file,
-%	extension '.mat' is assumed
+% 	extension '.mat' is assumed
 %  framerate -- framerate of the data
-%  filterlength -- length of the window of the gaussian filter
+%  filterlength -- size of the window of the gaussian filter
 % 
 % Input file structure:
 %   data{k} -- cell array of trial k containing:
@@ -22,7 +24,7 @@ function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % 
 % Output File:
 %  data will be stored in a file named 'datafname'_CVel.mat in 
-%	the directory specified by 'path_to_file'
+% 	the directory specified by 'path_to_file'
 % 
 % Output file structure:
 % 	fspeed (i,j) -- filtered centroid velocity at time i of trial j.
@@ -43,7 +45,7 @@ for i = 1:length(data)
     for k = 1:size(data{i}.centroid,1)-1
         diff_t(k,:) = data{i}.centroid(k+1,:) - data{i}.centroid(k,:); 
     end
-    speed(:,i) = sqrt(diff_t(:,1).^2 + diff_t(:,2).^2)./framerate;
+    speed(:,i) = sqrt(diff_t(:,1).^2 + diff_t(:,2).^2).*framerate;
     
     
     %find forward/backward direction
@@ -59,6 +61,7 @@ for i = 1:length(data)
             
             %set the speed to negative if the dot product is negative
            if dirvec(j) < 0
+
                speed(j,i) = -speed(j,i);
            end
          end
