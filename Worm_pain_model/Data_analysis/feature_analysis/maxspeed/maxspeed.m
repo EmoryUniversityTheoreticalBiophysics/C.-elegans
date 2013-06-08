@@ -9,11 +9,11 @@ orgpath = pwd;
 %path of the centroid speed data
 speeddatapath = 'D:\Dropbox\GitHub\C.-elegans\Worm_pain_model\Preprocessing\centroid_speed';
 %filename
-datafilename = 'speed_ctrl.mat';
+datafilename = 'speed_IBUPROFEN.mat';
 %speed variable name
-speedvarname = 'speed_ctrl';
+speedvarname = 'speed_IBUPROFEN';
 %Laser power variable name
-laservarname = 'I_ctrl';
+laservarname = 'I_IBUPROFEN';
 
 
 %starting time for calculation

@@ -1,41 +1,39 @@
-Prepare the data by loading all rawdata and save them in one file.
+function []=combine_data(path_to_file, picfname,alldatafname,centroidfname)
 
-============================================
-combine_data.m
+The function load centroid, skeleton, curvature, laser power, 
+laser position, crawling side and filename data from experiment results 
+and combine them into one file. 
 
-Function:
-read centroid, curvature and skeleton data of control and IBUPROFEN dataset 
+Input:
+ path_to_file -- path to the folder which contain experiment data
+ alldatafname -- name of the folder which contain *_analysis data 
+ centroidfname -- name of the folder which contain *_centroid data
+ picfname -- name of the folder which contain pictures from the
+ experiment
 
 Output:
-data_*.mat
+ no output variables
 
-Structure of data_*.mat:
-data_*{
-numberoffframes2 : number of frames
-lasercurrent2 : Invalid, not used
-name: filename
-skelcurv2 : curvature of the data
-wormskelx : x position of the worm skeleton
-wormskely : y position of the worm skeleton
-centroid : centroid position of the worm
+Output File:
+ data will be stored in a file named 'picfname'_data.mat in 
+	the directory specified by 'path_to_file'
 
-rest of the data are not used
+Output file structure:
+xpos -- x position of laser of trial i
+ypos -- y position of laser of trial i
+data{
+ wormskelx -- x position of worm skeleton in <time * position>. Head is
+ represented by position 1 and tail is represented by position 41.
+ wormskely -- y position of worms keleton in <time * position>. 
+ skelcurv2 -- curvature of worm skeleton in <time * position>. Head is
+ represented by position 1 and tail is represented by position 37.
+ numberofframes -- total number of frames in the video.
+ centroid.wormcentroid.c2.Centroid -- Centroid position of the worm
 }
+I -- laser power of worm i
+side -- side of the worm crawl on
+ R: the worm was crawling on the right side
+ L: the worm was crawling on the left side
+ N: crawling side not recorded 
 
-
-============================================
-combine_note.m
-
-Function:
-read laser power, laser position, crawling side and filename of control and IBUPROFEN dataset 
-
-Output:
-note_*.mat
-
-Structure of note_*.mat:
-I_*(i) : laser power of worm index i
-xpos_*(i) : x position of laser power 
-ypos_*(i) : y position of laser power 
-side_*(i) : crawling side 
-filename_*(i) : filename
-
+(c) George Leung, Ilya Nemenman, Emory University, 2011-2013
