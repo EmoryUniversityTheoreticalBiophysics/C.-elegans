@@ -1,3 +1,4 @@
+function []=thdirection(datapath, datafilename,initlength)
 % function []=thdirection(datapath, datafilename,initlength)
 % 
 % This function calculates the tail-to-head vector (thvector) of the worm at different
@@ -38,29 +39,38 @@
 % 
 % Dependency:
 % angle_change.m
-%
-% (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
-
-=======================================================================================
-
-% function [ angle_f ] = angle_change( initvec,finalvec )
-% 
-% This function calculates the angular difference between two vectors. 
-% The angle is defined as the change from 'initvec' to 'finalvec'.
-%
-% Input:
-%   initvec -- initial vector.
-%   finalvec -- final vector. 
-% 
-% Input file structure:
-% no input file
-% 
-% Output:
-%   angle_f -- The angular difference from 'initvec' to 'finalvec'.The 
-%   angle ranges from +180 to -180 degrees and clockwise is defined as
-%   negative. Value equals to NaN if vector length = 0.
-% 
-% Output File:
-% no output file
 % 
 % (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
+
+
+%load data
+
+load([datapath '\' datafilename '.mat'])
+
+%calculate the change in direction during different time
+for i = 1:length(data)
+    
+    %calculate tail to head vector
+    head(:,1) = data{i}.wormskelx(:,1);
+    tail(:,1) = data{i}.wormskelx(:,41);
+    head(:,2) = data{i}.wormskely(:,1);
+    tail(:,2) = data{i}.wormskely(:,41);
+    thvector{i} = head - tail;
+    
+%   calculate initial vector by averaging first 'initlength' frames
+    initvector = mean(thvector{i}(1:initlength,1:2));
+    
+%   calculate the angle between initvector and thvector
+    for  k = 1:length(thvector)
+        thdirection(k,i) = angle_change(initvector,thvector{i}(k,1:2));
+    end
+end
+
+
+%Save data in the folder path_to_file\datafname_analysis\thdirection
+%make one if the folder does not exist
+filepathname = [datapath '\' datafilename '_analysis\thdirection'];
+mkdir(filepathname)
+
+%saving data
+save([filepathname '\' datafilename '_thdirection'],'thdirection')

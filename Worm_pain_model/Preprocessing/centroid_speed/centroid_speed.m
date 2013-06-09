@@ -24,12 +24,15 @@ function []=centroid_speed(path_to_file, datafname, framerate,filterlength)
 % 
 % Output File:
 %  data will be stored in a file named 'datafname'_CVel.mat in 
-% 	the directory specified by 'path_to_file'
+% 	the directory specified by 'path_to_file'\datafname_analysis\centroid_speed
 % 
 % Output file structure:
 % 	fspeed (i,j) -- filtered centroid velocity at time i of trial j.
 %   nfspeed (i,j) -- filtered and normalized centroid veloctiy at time i of trial j.
 %   I(i) -- laser power of worm i.
+% 
+% Dependency:
+% filter_function.m
 % 
 % (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
 
@@ -90,14 +93,13 @@ end
 
 
 %Save data in the folder path_to_file\datafname_analysis\centroid_speed
-%Changing folder and make one if the folder does not exist
+%make one if the folder does not exist
 
 filepathname = [path_to_file '\' datafname '_analysis\centroid_speed'];
-try
-    mkdir(filepathname)
-end
+mkdir(filepathname)
+
 
 %saving data
-save([filepathname '\' datafname(1:end-5) '_CVel'],'fspeed','nfspeed','I')
+save([filepathname '\' datafname '_CVel'],'fspeed','nfspeed','I')
 
 end

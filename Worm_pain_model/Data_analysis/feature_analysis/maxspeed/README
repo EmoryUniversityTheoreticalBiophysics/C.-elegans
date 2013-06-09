@@ -1,20 +1,43 @@
-Find the maximum backward speed of the worm
-
-===================================================
-maxspeed.m
-
-function:
-calculate maximum speed
-
-output:
-maxspeed_*.mat
-
-Structure of maxspeed_*.mat
-maxvalue : maximum backward speed 
-time2max : time to maximum backward speed 
-avgmaxspeed: average maximum backward speed after binning
-I_avgmaxspeed: Laser power of the average maximum backward speeds
-
-
+% function []=maxspeed(speeddatapath, datafilename)binlength
+% 
+% This function calaculates the maximum backward velocity and the time 
+% which the maximum velocity is reached between starttime and endtime and save the
+% result in .mat format. This function also seperate the data into binlength groups
+% according to their laser power and calculate the average and standard
+% deviation of maximum backward velocity respectively.
+% 
+% 
+% Recommended values for 60fps data is starttime = 60, edntime
+% = 200. Recommended values for 30fps data is starttime = 30, edntime
+% = 100. Recommended value for binlength is 10.
+% 
+% Input:
+%  speeddatapath -- path to the file with the centroid 
+% 	fspeed data
+%  datafilename -- filename of the centroid fspeed data file,
+% 	datafilename '.mat' is assumed
+%  starttime -- starting time of measurement.
+%  filterlength -- ending time of measurement.
+%  binlength -- 
+% 
+% Input file structure:
+% 	fspeed (i,j) -- filtered centroid velocity at time i of trial j.
+%   I(i) -- laser power of worm i.
+% 
+% Output:
+%  no output variables
+% 
+% Output File:
+%  data will be stored in a file named 'datafilename'_max.mat in 
+% 	the directory specified by 'path_to_file'
+% 
+% Output file structure:
+% 	maxvalue(i) -- maximum backward velocity of trial i.
+%   time2max i) -- filtered and normalized centroid veloctiy at time i of trial j.
+%   avgmaxspeed(k) -- average maximum backward velocity of group k.
+%   SDmaxspeed(k) -- standard deviation of the maximum backward velocities of group k.
+%   I_avgmaxspeed(k) -- laser power of group k.
+% 
+% (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
 
 

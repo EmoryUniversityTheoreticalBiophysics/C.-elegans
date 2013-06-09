@@ -1,15 +1,27 @@
-%%calculate the change in direction of finalvec wiht respect to initvec
-%
-%Input:
-%initvec = (x,y)
-%finalvec = (x,y)
-
-% Output:
-% 180 to -180 degrees
-% clockwise = -ve
-% output = NaN if vector length = 0
 
 function [ angle_f ] = angle_change( initvec,finalvec )
+% function [ angle_f ] = angle_change( initvec,finalvec )
+% 
+% This function calculates the angular difference between two vectors. 
+% The angle is defined as the change from 'initvec' to 'finalvec'.
+%
+% Input:
+%   initvec -- initial vector.
+%   finalvec -- final vector. 
+% 
+% Input file structure:
+% no input file
+% 
+% Output:
+%   angle_f -- The angular difference from 'initvec' to 'finalvec'.The 
+%   angle ranges from +180 to -180 degrees and clockwise is defined as
+%   negative. Value equals to NaN if vector length = 0.
+% 
+% Output File:
+% no output file
+% 
+% (c) George Leung, Ilya Nemenman, Emory University, 2011-2013
+
     %calculate distance of the vectors
     len1 = sqrt(initvec(1)^2 + initvec(2)^2);
     len2 = sqrt(finalvec(1)^2 + finalvec(2)^2);

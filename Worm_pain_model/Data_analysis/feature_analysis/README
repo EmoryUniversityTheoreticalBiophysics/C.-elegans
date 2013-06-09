@@ -3,36 +3,34 @@ Analysis of different large scale features
 ===========================================
 Omega_turn_angle  
 
-
+NOT COMPLETED
 ===========================================
 Terminal_speed    
 
-Function:
-Calculate the terminal speed
+NOT COMPLETED
 ===========================================
 Maxspeed          
 
-Function:
-Calculate the maximum speed
+This function calaculates the maximum backward velocity and the time 
+which the maximum velocity is reached between starttime and endtime and save the
+result in .mat format. This function also seperate the data into binlength groups
+according to their laser power and calculate the average and standard
+deviation of maximum backward velocity respectively.
 ===========================================
 Accceleration     
 
-Function:
-Calcualte the acceleration
+NOT COMPLETED
 ===========================================
 Features_angle    
 
-
+NOT COMPLETED
 ===========================================
 Response_time     
 
-Function:
-Calcaulte the response time by finding the time when speed drops below zero after the laser was ignited
+NOT COMPLETED
 
 ===========================================
 Combined     
 
-Function:
-Combine all feaures and perform LASSO analysis
-
+NOT COMPLETED
 ===========================================
