@@ -75,8 +75,6 @@ for i = 1:length(data)
     
 end
 
-
-
 %%Normalization of speed
 %%calculate mean speed and SD of different time
 meanspeed = mean(fspeed,2);
@@ -100,6 +98,6 @@ mkdir(filepathname)
 
 
 %saving data
-save([filepathname '\' datafname '_CVel'],'fspeed','nfspeed','I')
+save([filepathname '\' datafname '_CVel'],'speed','fspeed','nfspeed','I')
 
 end

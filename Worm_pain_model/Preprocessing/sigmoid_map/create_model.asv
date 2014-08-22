@@ -1,0 +1,9 @@
+% Create model for sigmoid transfer
+function []=create_model(speedfpath, speedfname,featurefname)
+    load([speedfpath '\' featurefname '.mat'])
+load([speedfpath '\' speedfname '.mat'])
+    [fitresult gof] = tanhfit(featuredata.I,featuredata.maxspeed);
+
+    tranI = fitresult(I);
+    scalefactor = sqrt(var(I))/sqrt(var(tranI));
+end

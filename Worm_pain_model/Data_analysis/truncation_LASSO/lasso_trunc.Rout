@@ -1,0 +1,41 @@
+Loading required package: R.oo
+Loading required package: R.methodsS3
+R.methodsS3 v1.4.2 (2012-06-22) successfully loaded. See ?R.methodsS3 for help.
+R.oo v1.13.0 (2013-03-08) successfully loaded. See ?R.oo for help.
+
+Attaching package: 'R.oo'
+
+The following object(s) are masked from 'package:methods':
+
+    getClasses, getMethods
+
+The following object(s) are masked from 'package:base':
+
+    attach, detach, gc, load, save
+
+R.matlab v1.6.3 (2013-01-17) successfully loaded. See ?R.matlab for help.
+
+Attaching package: 'R.matlab'
+
+The following object(s) are masked from 'package:base':
+
+    getOption, isOpen
+
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+The following object(s) are masked from 'package:base':
+
+    det
+
+Loaded glmnet 1.7.3
+
+Loading required package: R.utils
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called 'R.utils'
+> proc.time()
+   user  system elapsed 
+  15.11    0.92   17.16 

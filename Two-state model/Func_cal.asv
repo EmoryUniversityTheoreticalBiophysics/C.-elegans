@@ -1,0 +1,89 @@
+ 
+function [foutput]=Func_cal(I1,I,speed,factor1) 
+    
+    Nworms=size(speed,2);
+   
+    %calculate u(t)
+    factorval = factor1(I,I1);
+    u = (speed*(1./factorval)')/Nworms;
+    temp2= speed -(u*factorval);
+    sigmagt=std(temp2,0,2);
+
+    foutput=-(sum(sum(-temp2.^2./(2*sigmagt*ones(1,Nworms)))) ...
+        -sum(log(sigmagt))*Nworms);   
+end
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

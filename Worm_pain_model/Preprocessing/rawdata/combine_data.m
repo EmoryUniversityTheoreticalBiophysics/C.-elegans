@@ -1,4 +1,4 @@
-function []=combine_data(path_to_file, picfname,alldatafname,centroidfname)
+function []=combine_data(path_to_file, picfname,alldatafname,centroidfname,laserfactor)
 
 % function []=combine_data(path_to_file, picfname,alldatafname,centroidfname)
 % 
@@ -12,6 +12,8 @@ function []=combine_data(path_to_file, picfname,alldatafname,centroidfname)
 %  centroidfname -- name of the folder which contain *_centroid data
 %  picfname -- name of the folder which contain pictures from the
 %  experiment
+%  laserfactor -- multiplying factor of laser power (0.32 for ctrl and
+%  IBUPROFEN data)
 % 
 % Output:
 %  no output variables
@@ -73,7 +75,7 @@ for i = 1:length(filelist)-2
     fclose(tempfile);
     
     %read in Laser power 
-    I(i) = str2num(line{4}(strfind(line{4}, '(mA):')+5 : end))*0.32;
+    I(i) = str2num(line{4}(strfind(line{4}, '(mA):')+5 : end))*laserfactor;
     %read in x position of Laser power 
     xpos(i) = str2num(line{5}(strfind(line{5}, 'x:')+2 : strfind(line{5}, 'y:')-1));
     %read in y position of Laser power 
@@ -96,8 +98,26 @@ for i = 1:length(filelist)-2
 end 
 
 
+%Detecting the closest position on worm from laser
+for i = 1:length(data)
+    dist_raw(i,:) = sqrt((data{i}.wormskelx(61,:)-xpos(i)).^2 + (data{i}.wormskely(61,:)-ypos(i)).^2);
+end
+[dist distminpos] = min(dist_raw,[],2);
 
-%%%Saving the data into one file
+%Assume that the worm is always hitted on the head, and all tail-hitting case 
+% are errors due to reversed head and tail detection. Fix all the tail-hitting case 
+% by reversing it.
+for i = 1:length(distminpos)
+    if distminpos(i) > size(data{i}.wormskelx,2)/2
+        data{i}.skelcurv2 = fliplr(data{i}.skelcurv2);
+        data{i}.wormskelx = fliplr(data{i}.wormskelx);
+        data{i}.wormskely = fliplr(data{i}.wormskely);
+    end
+end
+
+
+
+%Saving the data into one file
 cd(path_to_file)
 savefilename = [picfname '_data'];
 save(savefilename,'data','filename','I','xpos','ypos','side')
