@@ -1,0 +1,13 @@
+function [Ipred_diff_mean_bin,Ipred_diff_se_bin] = IpdiffvsIa_binse(Ipred_diff,I,numofbin)
+
+    [bin_num, meanI ,bin_range]=data_bin(I,numofbin);
+    
+    Ipred_diff_mean = mean(Ipred_diff,1);
+    Ipred_diff_var = var(Ipred_diff,1);
+    for ii = 1:5
+        Ipred_diff_mean_bin(ii) = mean(Ipred_diff_mean(bin_num==ii));
+        Ipred_diff_var_bootavg(ii) = mean(Ipred_diff_var(bin_num==ii));
+        Ipred_diff_var_bin(ii) = var(Ipred_diff_mean(bin_num==ii))/sum(bin_num==ii);
+        Ipred_diff_se_bin(ii) = sqrt(Ipred_diff_var_bootavg(ii)/sqrt(1000) + Ipred_diff_var_bin(ii));
+    end
+end
