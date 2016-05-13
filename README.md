@@ -16,4 +16,4 @@ Contains example programs.
 Contains the dataset used in the paper.
 
 Contributors:
-George Leung
+Kawai Leung
