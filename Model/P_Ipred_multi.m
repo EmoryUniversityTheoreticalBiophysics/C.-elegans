@@ -1,6 +1,6 @@
 
 
-function [p_all,I0,I1,ugt,sigmagt,upt,sigmapt,likelihood] = P_Ipred_multi(model_I,model_S,model_speed,pred_I_range,pred_speed,factor1,init_val,pscale)
+function [p_all,I0,I1,ugt,sigmagt,upt,sigmapt,likelihood] = P_Ipred_multi(model_I,model_S,model_speed,pred_I_range,pred_speed,factor1,init_val)
 % This function read in speed profile, laser power from data fname,
 % calculate optimal parameters I0 and I1 for the model and calcualte the
 % probability distribution of laser pwoer given the model and speed
@@ -12,18 +12,16 @@ function [p_all,I0,I1,ugt,sigmagt,upt,sigmapt,likelihood] = P_Ipred_multi(model_
 %  model_S -- boolean index representing go or paused worms. Pause = 1 and go = 0. (1 x worms)
 %  model_speed -- speed profile of the worm for calculation of model (time x worms)
 %  pred_speed -- speed profile of the worm for prediction. Equal to model_speed if input argument equals to []. (time x pred_nworms)
-%  pscale -- rescaling factor of go worms
 %  init_val -- initial value for I1 optimization 
 
 % Output:
 %  I0 and I1 -- parameters of the model
-%  p_all -- Probabilities of the speed profile given laser power I (1:maxI
+%  p_all -- Probabilities of laser power I given the speed profile (1:maxI
 %  x worms)
 %  ugt -- average of the go worm speed (1 x time)
 %  sigmagt -- variance of the go worm speed (1 x time)
 %  upt -- average of the paused worm speed (1 x time)
 %  sigmapt -- variance of the paused worm speed (1 x time)
-%  likelihood --
 %
 % (c) George Laung and Ilya Nemenman
     
@@ -73,7 +71,7 @@ function [p_all,I0,I1,ugt,sigmagt,upt,sigmapt,likelihood] = P_Ipred_multi(model_
         % model defined by the rescaling function, I0, I1,  and average and variance of the worm speed profile
         
         %likelihood 
-        p_v_given_I = prob_I_givenspeed_multi(predIval,pred_speed(:,i),sigmagt,ugt,sigmapt,upt,I0,I1,factor1,pscale); 
+        p_v_given_I = prob_I_givenspeed_multi(predIval,pred_speed(:,i),sigmagt,ugt,sigmapt,upt,I0,I1,factor1,1); 
         
         %normalized likelihood
         likelihood(:,i) = p_v_given_I'./sum(p_v_given_I);

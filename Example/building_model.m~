@@ -1,0 +1,20 @@
+
+%This is an example of building the model from control centroid speed dataset and
+%calcualte the posterior probability of target centroid speed dataset.
+
+%Preparaing the data
+%rescaling_func defines the rescaling function of the active centroid
+%speed.
+rescaling_func = @(I,I1) I1(1)+((I)./(1+(I/I1(2)))); 
+
+%In the example dataset, only time from 60th frame (1s) to 200th frame is
+%used.
+range_speed = [60 200];
+
+%Centroid speed is undersampled by usratio.
+usratio = 5;
+speedtimelist = round(linspace(range_speed(1),range_speed(2),(range_speed(2)-range_speed(1)+1)/usratio));
+%%%%
+
+%loading the model dataset
+load('control_oct_data.mat',fsped)
