@@ -1,0 +1,37 @@
+function []=combine_data(path_to_file, picfname,alldatafname,centroidfname)
+
+The function load centroid, skeleton, curvature, laser power, 
+laser position, crawling side and filename data from experiment results 
+and combine them into one file. 
+
+Input:
+ path_to_file -- path to the folder which contain experiment data
+ alldatafname -- name of the folder which contain *_analysis data 
+ centroidfname -- name of the folder which contain *_centroid data
+ picfname -- name of the folder which contain pictures from the
+ experiment
+
+Output:
+ no output variables
+
+Output File:
+ data will be stored in a file named 'picfname'_data.mat in 
+	the directory specified by 'path_to_file'
+
+Output file structure:
+xpos -- x position of laser of trial i
+ypos -- y position of laser of trial i
+data(k) -- cell array of trial k containing:
+ wormskelx (i,j) -- x position of worm skeleton in i represents time and j represents relative position on the skeleton. Head is
+ represented by position 1 and tail is represented by position 41.
+ wormskely (i,j) -- y position of worms keleton. i represents time and j represents relative position on the skeleton. 
+ skelcurv2 (i,j) -- curvature of worm skeleton. i represents time and j represents relative position on the skeleton. 
+ numberofframes -- total number of frames in the video.
+ centroid (i,j) -- Centroid position of the worm. i represents time and j represents x (j = 1) and y (j = 2) coordinates. 
+I -- laser power of worm i
+side -- side of the worm crawl on
+ R: the worm was crawling on the right side
+ L: the worm was crawling on the left side
+ N: crawling side not recorded 
+
+(c) George Leung, Ilya Nemenman, Emory University, 2011-2013

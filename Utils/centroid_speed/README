@@ -1,0 +1,53 @@
+Calculate the centroid speed and save them to speed_*.mat
+
+==========================================================
+centroid_speed(path_to_file, datafname, framerate,filterlength)
+
+This function calaculates the worm centroid speed in pixels/s from 
+centroid position data. The centroid speed of time t is calculated by calculating
+the difference between time t+1 and time t, then multiply it by
+framerate. Finally the speed is smoothed by a moving gaussian filter.
+
+Input:
+ path_to_file -- path to the file with the centroid 
+	position data
+ datafname -- filename of the centroid position data file,
+	extension '.mat' is assumed
+ framerate -- framerate of the data
+ filterlength -- size of the window of the gaussian filter
+
+Input file structure:
+  data{k} -- cell array of trial k containing:
+      centroid (i,j) -- Centroid position of the worm. i represents time and j represents x (j = 1) and y (j = 2) coordinates. 
+  I(i) -- laser power of worm i
+
+Output:
+ no output variables
+
+Output File:
+ data will be stored in a file named 'datafname'_CVel.mat in 
+	the directory specified by 'path_to_file'
+
+Output file structure:
+  fspeed (i,j) -- filtered centroid velocity at time i of trial j.
+  nfspeed (i,j) -- filtered and normalized centroid veloctiy at time i of trial j.
+  I(i) -- laser power of worm i.
+
+
+Dependency:
+filter_function.m
+
+===========================================================
+filter_function(speed,windowSize)
+
+function [ speed_f2 ] = filter_function(speed,windowSize)
+
+This function apply a moving gaussian filter on the speed vs time data.
+
+Input:
+  speed(i) -- centroid velocity at time i.
+  windowSize -- size of the window
+Output:
+  speed_f2(i) -- filtered centroid velocity at time i.
+
+===========================================================

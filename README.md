@@ -15,5 +15,8 @@ Contains example programs.
 \Data:
 Contains the dataset used in the paper.
 
+\Utils:
+Contains scripts and functions that used to process raw data into dataset in \Data and estimate the nonlinear mapping.
+
 Contributors:
 Kawai Leung
